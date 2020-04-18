@@ -1,0 +1,259 @@
+@font-face {
+    font-family: myfont;
+    src: url(Opun-Regular.ttf);
+}
+
+body{
+    width: 100%;
+    margin: 0px;
+    background-color: #ffd7b5;
+    font-family: myfont;
+    /* background-size: 100% cover; */
+    
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 100%;
+    /* border: solid 1px black; */
+    /* padding: 10px; */
+}
+.grid-container > div{
+    /* border: 1px solid black; */
+    height: 100%;
+}
+
+#header{
+    grid-column: 1/span 1;
+    position: fixed;
+    background-color: #ea7d3b;
+    z-index: 999;
+    width: 100%;
+    height: 8%;
+    top: 0px;
+
+}
+#space1{
+    background-image: url("img/BG_Header.png");
+    background-repeat: no-repeat;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 8%;
+    height: 40px;
+}
+
+#main{
+    grid-column: 1/span 1;
+    margin-top: 50px;
+    height: auto;
+}
+#space2{
+    background-image: url("img/Space.png");
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 10;
+    top: -40px;
+    height: 40px;
+}
+
+#menu{
+    grid-column: 1/span 1;
+}
+
+#info{
+    grid-column: 1/span 1;
+}
+
+#footer{
+    grid-column: 1/span 1;
+    background-color: #ea7d3b;
+    height: 200px;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+}
+
+#main > img{
+    display: block;
+    margin: auto;
+    width: 90%;
+
+}
+
+.flex_container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.flex_container > div{
+    /* border: 1px solid turquoise; */
+    margin: 10px 60px;
+    text-align: center;
+}
+
+.flex_container > div >img{
+    display: block;
+    height: 100px;
+}
+
+.grid_footer{
+    display: grid;
+    grid-template-columns: 20%;
+    margin: 10px;
+    position: absolute;
+    font-size: 15px;
+}
+.grid_footer > div > img{
+    width: 35px;
+    margin-right: 10px;
+}
+.grid_footer > div{
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#facebook,#instagram{
+    grid-column: 1/span 1;
+    display: flex;
+    align-items: center;
+}
+
+/* .menu{
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+} */
+
+.menu{
+    font-size: 28px;
+    display: inline;
+    margin-left: 26.5px;
+    color: white;
+    padding-bottom: 40px;
+    padding-left: 8.5px;
+    padding-right: 8.5px;
+}
+.logo{
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.user{
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    /* left: 100%; */
+    transform: translate(0, -50%);
+}
+
+#footer > img{
+    width: 120px;
+    display: block;
+    margin: auto;
+    margin-top: 35px;
+}
+.backtotop{
+    position: fixed;
+    width: 30px;
+    right: 30px;
+    bottom: 50px;
+}
+
+.form-popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 3px solid #f1f1f1;
+    z-index: 20;
+}
+
+.form-container{
+    max-width: 300px;
+    padding: 20px;
+    background-color: white;
+}
+
+a:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    background: #f1f1f1;
+}
+
+h1{
+    text-align: center;
+    line-height: 10px;
+}
+b{
+    font-size: 15px;
+}
+
+.form-container > .btn{
+    background-color: #ea7d3b;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    padding: 10px 0px;
+    opacity: 0.8;
+}
+
+.form-container > .btn:hover{
+    opacity: 1;
+}
+
+.form-container > a{
+    color: gray;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    line-height: 18px;
+    font-size: 18px;
+}
+
+#signup{
+    color: #ea7d3b;
+    opacity: 0.8;
+    position: static;
+    font-size: 13px;
+}
+#signup:hover{
+    opacity: 1;
+}
+p{
+    display: inline;
+    color: gray;
+    font-size: 10px;
+}
+
+.sidenav{
+    height: 0;
+    width: 45px;
+    position: fixed;
+    z-index: 1;
+    top: 8%;
+    left: 26.5px;
+    background-color: #ea7d3b;
+    overflow-y: hidden;
+    transition: 0.5s;
+    font-size: 10px;
+}
+
+/* -------------------------------------------------------------------------- */

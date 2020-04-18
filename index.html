@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>Petto</title>
+</head>
+<body>
+    <!-- ---------------------------------------------- -->
+    <div class="form-popup" id="myFormLogin">
+        <form action="/action_page.php" class="form-container">
+            <!-- <button type="button" class="btn_cancel" onclick="closeForm()">Close</button> -->
+            <a onclick="closeForm()">X</a>
+            
+            <h1>Login</h1>
+
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <p>Not a member?&emsp;</p><a onclick="openRegis()" id="signup">Sign Up</a>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+    <!-- ---------------------------------------------- -->
+    <div class="form-popup" id="myFormRegis">
+        <form action="/action_page.php" class="form-container">
+            <!-- <button type="button" class="btn_cancel" onclick="closeForm()">Close</button> -->
+            <a onclick="closeForm()">X</a>
+            
+            <h1>Register</h1>
+
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="psw"><b>Re-Password</b></label>
+            <input type="password" placeholder="Re-Enter Password" name="psw" required>
+
+            <p>Already have an account?&emsp;</p><a onclick="openForm()" id="signup">Login</a>
+            <button type="submit" class="btn">Sing up</button>
+        </form>
+    </div>
+
+    <!-- ---------------------------------------------- -->
+    <div id="mySidenav" class="sidenav" onmousemove="openNav()" onmouseout="closeNav()">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
+    <!-- ---------------------------------------------- -->
+
+    <div class="grid-container">
+        <div id="header">
+            <p class="menu" onmouseover="openNav()" onmouseout="closeNav()">&#9776</p>
+            <!-- <img src="img/Menubar.png" alt="Menu" class="menu"> -->
+            <img src="img/logo.png" alt="Logo" class="logo">
+            <a onclick="openForm()"><img src="img/user.png" alt="User" class="user"></a>
+        </div>
+        <div id="space1"></div>
+        <div id="main"><img src="img_main/1.png" alt="Cat"></div>
+        <div id="space2"></div>
+        <div id="menu" class="flex_container">
+            <div><img src="img/0001.png" alt="Dog">Dog</div>
+            <div><img src="img/0002.png" alt="Cat">Cat</div>
+            <div><img src="img/0003.png" alt="Rabbit">Rabbit</div>
+            <div><img src="img/0004.png" alt="Mouse">Mouse</div>
+            <div><img src="img/0005.png" alt="Etc.">Etc.</div>
+        </div>
+        <div id="info">Info</div>
+        <div id="footer">
+            <div class="grid_footer">
+                <div id="facebook"><img src="img/facebook.png" alt="Facebook">Petto</div>
+                <div id="instagram"><img src="img/instagram.png" alt="Instagram">Petto</div>
+            </div>
+            <img src="img/logo.png" alt="Logo">Copyright&ensp;@&ensp;2020&ensp;PETTO.&ensp;All&ensp;Rights&ensp;Reserved
+        </div>
+    </div>
+    <img src="img/top.png" alt="Back to Top" class="backtotop">
+    
+    <!-- ---------------------------------------------- -->
+
+    <script>
+        function openForm(){   //เปิดหน้า Login
+            document.getElementById("myFormLogin").style.display = "block";
+            document.getElementById("myFormRegis").style.display = "none";
+        }
+        function closeForm(){ //ปิดหน้าทั้งหมด
+            document.getElementById("myFormLogin").style.display = "none";
+            document.getElementById("myFormRegis").style.display = "none";
+        }
+        function openRegis(){ //เปิดหน้า Regis
+            document.getElementById("myFormRegis").style.display = "block";
+            document.getElementById("myFormLogin").style.display = "none";
+        }
+
+
+        function openNav() { //เปิดเมนู
+            document.getElementById("mySidenav").style.height = "200px";
+            document.getElementById("mySidenav").style.paddingTop = "50px"
+        }
+        function closeNav() { //ปิดเมนู
+            document.getElementById("mySidenav").style.height = "0";
+            document.getElementById("mySidenav").style.paddingTop = "0px"
+        }
+    </script>
+</body>
+</html>
