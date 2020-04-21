@@ -2,7 +2,9 @@
     font-family: myfont;
     src: url(Opun-Regular.ttf);
 }
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     width: 100%;
     margin: 0px;
@@ -27,7 +29,7 @@ body{
     grid-column: 1/span 1;
     position: fixed;
     background-color: #ea7d3b;
-    z-index: 999;
+    z-index: 90;
     width: 100%;
     height: 8%;
     top: 0px;
@@ -37,7 +39,7 @@ body{
     background-image: url("img/BG_Header.png");
     background-repeat: no-repeat;
     position: fixed;
-    z-index: 10;
+    z-index: 15;
     width: 100%;
     top: 8%;
     height: 40px;
@@ -52,7 +54,7 @@ body{
     background-image: url("img/Space.png");
     background-repeat: no-repeat;
     position: relative;
-    z-index: 10;
+    z-index: 5;
     top: -40px;
     height: 40px;
 }
@@ -63,6 +65,7 @@ body{
 
 #info{
     grid-column: 1/span 1;
+    /* height: 700px; */
 }
 
 #footer{
@@ -78,7 +81,6 @@ body{
     display: block;
     margin: auto;
     width: 90%;
-
 }
 
 .flex_container{
@@ -134,9 +136,10 @@ body{
     display: inline;
     margin-left: 26.5px;
     color: white;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
     padding-left: 8.5px;
     padding-right: 8.5px;
+    cursor: default;
 }
 .logo{
     height: 50px;
@@ -146,12 +149,23 @@ body{
     transform: translate(-50%, -50%);
 }
 .user{
-    height: 35px;
     position: absolute;
     top: 50%;
     right: 20px;
-    /* left: 100%; */
+    justify-content: center;
     transform: translate(0, -50%);
+
+    color: white;
+    font-size: 15px;
+    vertical-align: middle;
+}
+.user img{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+
+    vertical-align: middle;
+    border-radius: 50%;
 }
 
 #footer > img{
@@ -160,11 +174,22 @@ body{
     margin: auto;
     margin-top: 35px;
 }
-.backtotop{
+
+#btnTop{
+    display: none;
     position: fixed;
     width: 30px;
     right: 30px;
     bottom: 50px;
+    cursor: pointer;
+    opacity: 0.8;
+    z-index: 100;
+
+    transition: 0.5s;
+}
+
+#btnTop:hover{
+    opacity: 1;
 }
 
 .form-popup{
@@ -173,14 +198,16 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    border: 3px solid #f1f1f1;
-    z-index: 20;
+    z-index: 99;
 }
 
-.form-container{
+.form-container, .store-container{
     max-width: 300px;
     padding: 20px;
     background-color: white;
+}
+.store-container{
+    max-width: 500px;
 }
 
 a:hover {
@@ -188,15 +215,30 @@ a:hover {
     opacity: 0.8;
 }
 
-.form-container input[type=text], .form-container input[type=password] {
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
     width: 90%;
     padding: 15px;
     margin-bottom: 20px;
     border: none;
     background: #f1f1f1;
 }
+.store-container input[type=text], .store-container input[type=number], #type {
+    width: 98%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: none;
+    background: #f1f1f1;
+    font-family: myfont;
+    font-size: 10px;
+}
 
-h1{
+#type{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+h1,h3{
     text-align: center;
     line-height: 10px;
 }
@@ -204,7 +246,11 @@ b{
     font-size: 15px;
 }
 
-.form-container > .btn{
+#myStore b{
+    font-size: 10px;
+}
+
+.form-container > .btn, .store-container>.btn{
     background-color: #ea7d3b;
     padding: 10px;
     color: white;
@@ -215,11 +261,11 @@ b{
     opacity: 0.8;
 }
 
-.form-container > .btn:hover{
+.form-container > .btn:hover, .store-container > .btn:hover{
     opacity: 1;
 }
 
-.form-container > a{
+.form-container > a, .store-container > a{
     color: gray;
     position: fixed;
     top: 10px;
@@ -243,17 +289,281 @@ p{
     font-size: 10px;
 }
 
+#overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
 .sidenav{
     height: 0;
     width: 45px;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 8%;
     left: 26.5px;
     background-color: #ea7d3b;
     overflow-y: hidden;
     transition: 0.5s;
+
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.sidenav a{
+    text-decoration: none;
+    color: white;
+    margin: 8px auto;
+    vertical-align: inherit;
+    font-family: Arial,Verdana,Helvetica,sans-serif;
+}
+
+.sidenav img{
+    width: 30px;
+    display: block;
+    margin: 8px auto;
+}
+
+.sidenav img:hover{
+    opacity: 0.8;
+}
+.profilehead{
+    margin-top: 100px;
+    text-align: center;
+    color: #ea7d3b;
+    font-size: 15px;
+}
+.profilehead a{
+    text-decoration: none;
+    color: #ea7d3b;
+}
+.profilehead a:hover{
+    color: #a74c13;
+}
+.grid-profile{
+    display: grid;
+    width: 70%;
+    grid-template-columns: 40% 60%;
+    margin: 0 15%;
+    border-radius: 40px;
+    background-color: #f3b690; 
+}
+.grid-profile > div{
+    /* border: 1px solid black; */
+    padding: 5%;
+}
+#imgprofile{
+    grid-column: 1/span 1;
+    text-align: center;
+}
+#imgprofile img{
+    /* width: 300px; */
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 10px auto;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#imgprofile img:hover{
+    opacity: 0.7;
+}
+
+#editPic{
+    color: #ea7d3b;
+    text-decoration: none;
+    cursor: pointer;
+    width: 20%;
+    margin: auto;
+}
+#infouser{
+    grid-column: 2/span 1;
+}
+
+.btnlogout{
+    background-color: #ea7d3b;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    width: 15%;
+    border: none;
+    padding: 10px 0px;
+    opacity: 0.8;
+    margin: 20px 42.5%;
+    margin-bottom: 80px;
+}
+.btnlogout:hover{
+    opacity: 1;
+}
+#infouser input[type=text], #infouser input[type=email] {
+    width: 50%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: none;
+    background: #dddddd;
+    font-family: myfont;
+    font-size: 15px;
+}
+
+.hidden{
+    display: none;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 109;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0); */
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content{
+    margin: auto;
+    display: block;
+    height: 80%;
+    max-height: 700px;
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom{
+    from{-webkit-transform: scale(0)}
+    to{-webkit-transform: scale(1)}
+}
+
+@keyframes zoom{
+    from{transform: scale(0)}
+    to{transform: scale(1)}
+}
+
+.close{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,.close:focus{
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidecart {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 109;
+    top: 0;
+    right: 0;
+    background-image: url("img/BG_Cart.png");
+    background-repeat: no-repeat;
+    background-color: #ffd7b5;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+}
+
+.sidecart a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidecart a:hover{
+    color: #818181;
+}
+
+.sidecart .closebtn{
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.sidecart h1{
+    font-size: 25px;
+    text-align: left;
+    padding-left: 20px;
+    color: #ea7d3b;
+}
+
+#cart{
+    width: 90%;
+    background-color: white;
+    max-height: 50%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px 0;
+}
+
+#main2{
+    height: 500px;
+}
+
+#addcart{
+    height: 40px;
+    width: 80px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background-color: #ea7d3b;
+    border: none;
+    color: white;
+    font-family: myfont;
+    cursor: pointer;
+}
+.UploadFile{
+    font-family: myfont;
     font-size: 10px;
 }
 
+#info2{
+    grid-column: 1/span 1;
+    height: 700px;
+    /* background-color: black; */
+}
+
+.contactus{
+    margin: 100px auto;
+    width: 80%;
+    font-size: 0;
+    /* height: auto; */
+    /* background-color: black; */
+}
+
+.contactus img{
+    width: 100%;
+}
+
+.flip{
+    transform: scaleY(-1);
+}
+
+.content{
+    background-color: white;
+}
 /* -------------------------------------------------------------------------- */
