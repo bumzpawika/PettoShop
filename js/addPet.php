@@ -6,14 +6,14 @@
         $username = "root";
         $password = "";
         $dbname = "petto";
-        $tablename = "store";
+        $tablename = "pet";
     
         $type = $_POST['type'];
         $id = $_POST['id'];
-        $name = $_POST['name'];
-        $pet=$_POST['pet'];
-        $price=$_POST['price'];
-        // $img=$_GET['storeToUpload'];
+        $sex=$_POST['sex'];
+        $color=$_POST['color'];
+        $gene=$_POST['gene'];
+        $age=$_POST['age'];
     
         $conn = new mysqli($servername,$username,$password,$dbname);
     
@@ -27,9 +27,10 @@
         idx INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         type VARCHAR(60) NOT NULL,
         id INT(4) NOT NULL,
-        name VARCHAR(60) NOT NULL,
-        forpet VARCHAR(255) NOT NULL,
-        price INT(6) NOT NULL,
+        sex VARCHAR(255) NOT NULL,
+        color VARCHAR(255) NOT NULL,
+        gene VARCHAR(255) NOT NULL,
+        age VARCHAR(255) NOT NULL,
         image VARCHAR(60) NOT NULL
         )";
     
@@ -40,7 +41,7 @@
             echo "Error creating table : ",$conn->error;
         }
     
-        $sql = "INSERT INTO $tablename (type,id,name,forpet,price,image) VALUES('$type','$id','$name','$pet','$price','$img')";
+        $sql = "INSERT INTO $tablename (type,id,sex,color,gene,age,image) VALUES('$type','$id','$sex','$color','$gene','$age','$img')";
     
         if($conn->query($sql) === TRUE){
             echo "New record created successfully";
@@ -49,17 +50,17 @@
             echo "Error : ".$sql."<br>".$conn->error;
         }
         $conn->close();
-        header('Location:../petto_store.php');
+        header('Location:../Petto_pet.php');
     }
 
 
     function uploadPic(){
-        $target_dir = "store/";
-        $target_file = $target_dir . basename($_FILES["storeToUpload"]["name"]);
+        $target_dir = "pet/";
+        $target_file = $target_dir . basename($_FILES["petToUpload"]["name"]);
         $ok=1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         if(isset($_POST["submit"])){
-            $check = getimagesize($_FILES["storeToUpload"]["tmp_name"]);
+            $check = getimagesize($_FILES["petToUpload"]["tmp_name"]);
             if($check !== false){
                 echo "File is an image - ".$check["mime"].".";
                 $ok=1;
@@ -73,7 +74,7 @@
             echo "Sorry, file already exists.";
             $ok = 0;
         }
-        if($_FILES["storeToUpload"]["size"] > 500000){
+        if($_FILES["petToUpload"]["size"] > 500000){
             echo "Sorry, your file is too large.";
             $ok = 0;
         }
@@ -81,8 +82,8 @@
             echo "Sorry, your file was not uploaded.";
         }
         else{
-            if(move_uploaded_file($_FILES["storeToUpload"]["tmp_name"],"C:/xampp/htdocs/Petto/".$target_file)){
-                addDatabase(basename($_FILES["storeToUpload"]["name"]));
+            if(move_uploaded_file($_FILES["petToUpload"]["tmp_name"],"C:/xampp/htdocs/Petto/".$target_file)){
+                addDatabase(basename($_FILES["petToUpload"]["name"]));
             }
             else {
                 echo "Sorry, there was an error uploading your file.";

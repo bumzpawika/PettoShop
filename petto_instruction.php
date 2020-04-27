@@ -1,5 +1,6 @@
 <?php
 session_start();
+    $log = 1;
 	if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
     }
@@ -7,7 +8,7 @@ session_start();
 		$imgfile = $_SESSION['img'];
     }
     else{
-        $username = "";
+        $username = "Login";
         $imgfile = "user.png";
     }
     
@@ -29,7 +30,7 @@ session_start();
     <!-- --------------------Login-------------------------- -->
     <div class="form-popup" id="myFormLogin">
         <form action="js/checkDB.php" class="form-container">
-            <a onclick="closeForm()">X</a>
+            <a onclick="closeForm()">$times;</a>
             
             <h1>Login</h1>
 
@@ -37,7 +38,7 @@ session_start();
             <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" style="margin-bottom:0px" required>
+            <input type="password" placeholder="Enter Password" name="psw" required>
             <span id="errordisplay"></span><br>
 
             <p>Not a member?&emsp;</p><a onclick="openRegis()" id="signup">Sign Up</a>
@@ -47,7 +48,7 @@ session_start();
     <!-- -------------------Register--------------------------- -->
     <div class="form-popup" id="myFormRegis">
         <form action="js/addDB.php" class="form-container">
-            <a onclick="closeForm()">X</a>
+            <a onclick="closeForm()">$times;</a>
             
             <h1>Register</h1>
 
@@ -64,7 +65,7 @@ session_start();
             <input type="password" placeholder="Re-Enter Password" name="psw" id="confirm-password" required> -->
 
             <p>Already have an account?&emsp;</p><a onclick="openForm()" id="signup">Login</a>
-            <button type="submit" class="btn">Sing up</button>
+            <button type="submit" class="btn">Sign up</button>
         </form>
     </div>
 
@@ -75,8 +76,9 @@ session_start();
         <a href="petto_like.php"><i class="fa fa-heart-o"></i></a>  <!-- ❤ -->
         <a href="petto_instruction.php"><img src="img/learn.png"></a>
         <a href="petto_contact.php"><img src="img/contact-us.png"></a>
-      </div>
+    </div>
     <!-- -------------------Cart--------------------------- -->
+
     <div id="mySidecart" class="sidecart">
         <a href="javascript:void(0)" class="closebtn" onclick="closecart()">X</a>
         <h1>ตะกร้าสินค้า</h1>
@@ -126,100 +128,28 @@ session_start();
         </form>
     </div>
 
-    <!-- ------------------Container---------------------------- -->
 
+    <!-- -------------------Container--------------------------- -->
     <div class="grid-container">
         <div id="header">
             <p class="menu" onmouseover="openNav()" onmouseout="closeNav()">&#9776</p>
             <!-- <img src="img/Menubar.png" alt="Menu" class="menu"> -->
             <a href="index.php"><img src="img/logo.png" alt="Logo" class="logo"></a>
-            <a onclick="openForm()" class="user"><img src=<?php echo "user/".$imgfile ?> alt="User">&ensp;<?php if($username=="")echo "Login"; else{echo $username;}?></a>
+            <a onclick="openForm()" class="user"><img src=<?php echo "user/".$imgfile ?> alt="User">&ensp;<?php echo $username?></a>
         </div>
         <div id="space1"></div>
         <div id="main">
-            <img src="img_main/1.png" alt="Cat">
-        </div>
-        <div id="space2"></div>
-        <div id="menu" class="flex_container">
-            <div><img src="img/0001.png" alt="Dog">Dog</div>
-            <div><img src="img/0002.png" alt="Cat">Cat</div>
-            <div><img src="img/0003.png" alt="Rabbit">Rabbit</div>
-            <div><img src="img/0004.png" alt="Mouse">Mouse</div>
-            <div><img src="img/0005.png" alt="Etc.">Etc.</div>
+            <!-- <div class="profilehead">
+                <a href="index.php">Petto</a> > ร้านค้า
+            </div> -->
         </div>
         <div id="info">
-            <div id="Other">
-                <div style="line-height:20px;">สัตว์เลี้ยงมาใหม่</div>
-                <div style="text-align:right;line-height:40px;"><a href="petto_pet.php">ดูเพิ่มเติม >></a></div>
+            <div class="contactus">
+                <img src="img/Top_contact.png">
+                <div id="content"></div>
+                <img src="img/Top_contact.png" class="flip">
             </div>
-            <div id="NewPet">
-                <!-- <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div> -->
-                
-            </div>
+            <!-- <button type="submit" onclick="openStore()" id="addcart">Add Cart</button> -->
         </div>
         <div id="footer">
             <div class="grid_footer">
@@ -232,13 +162,13 @@ session_start();
 
     <img src="img/top.png" alt="Back to Top" id="btnTop" onclick="topFunction()">
     
-    <!-- -----------------JavaScript----------------------------- -->
+    <!-- -----------------Javascript----------------------------- -->
 
     <script>
         var log = "<?php echo $username?>";
+
         function openForm(){   //เปิดหน้า Login
-            if(log == ""){
-                
+            if(log == "Login"){
                 document.getElementById("myFormLogin").style.display = "block";
                 document.getElementById("myFormRegis").style.display = "none";
                 document.getElementById("overlay").style.display = "block";
@@ -248,37 +178,6 @@ session_start();
                 location.href = 'petto_profile.php';
             }
         }
-        // function closeForm(){ //ปิดหน้าทั้งหมด
-        //     document.getElementById("myFormLogin").style.display = "none";
-        //     document.getElementById("myFormRegis").style.display = "none";
-        //     document.getElementById("overlay").style.display = "none";
-        //     document.body.style.overflow = "auto"
-        // }
-        // function openRegis(){ //เปิดหน้า Regis
-        //     document.getElementById("myFormRegis").style.display = "block";
-        //     document.getElementById("myFormLogin").style.display = "none";
-        //     document.getElementById("overlay").style.display = "block";
-        //     document.body.style.overflow = "hidden"
-        // }
-
-        // function openNav() { //เปิดเมนู
-        //     document.getElementById("mySidenav").style.height = "210px";
-        //     document.getElementById("mySidenav").style.paddingTop = "35px"
-        // }
-        // function closeNav() { //ปิดเมนู
-        //     document.getElementById("mySidenav").style.height = "0";
-        //     document.getElementById("mySidenav").style.paddingTop = "0px"
-        // }
-
-        // function opencart(){
-        //     document.getElementById("mySidecart").style.width = "300px";
-        //     document.getElementById("overlay").style.display = "block";
-            
-        // }
-        // function closecart(){
-        //     document.getElementById("mySidecart").style.width = "0";
-        //     document.getElementById("overlay").style.display = "none";
-        // }
     </script>
 </body>
 </html>

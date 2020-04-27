@@ -12,6 +12,8 @@
     $name = $_GET["username"];
     $pass = $_GET["psw"];
 
+    $x=0;
+
     if($conn->connect_error){
         die("Connection failed : ".$conn->connect_error);
     }
@@ -38,11 +40,16 @@
                         header('Location: ..?error=1');
                         exit();
                     }
+                    $x++;
                 }
             }
         }else{
             echo "0 results";
         }
+    }
+    if($x==0){
+        header("Location:..?error=2");
+        exit();
     }
 
     $conn->close();

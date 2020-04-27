@@ -24,7 +24,7 @@
         if($conn->query($sql) === TRUE){
             echo "Record updated successfully";
             $_SESSION['img'] = "$img";
-            header('Location: ../profile.php');
+            header('Location: ../petto_profile.php');
             exit();
         }
         else{

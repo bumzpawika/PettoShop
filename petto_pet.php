@@ -1,5 +1,6 @@
 <?php
-session_start();
+    session_start();
+    $log = 1;
 	if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
     }
@@ -7,10 +8,13 @@ session_start();
 		$imgfile = $_SESSION['img'];
     }
     else{
-        $username = "";
+        $username = "Login";
         $imgfile = "user.png";
     }
-    
+
+    $allpage = $_SESSION['PagePet'];
+
+    $page=1
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +28,9 @@ session_start();
     <title>Petto</title>
 </head>
 <body>
-    <!-- ------------------Overlay---------------------------- -->
+    <!-- ----------------Overlay------------------------------ -->
     <div id="overlay"></div>
-    <!-- --------------------Login-------------------------- -->
+    <!-- ------------------Login---------------------------- -->
     <div class="form-popup" id="myFormLogin">
         <form action="js/checkDB.php" class="form-container">
             <a onclick="closeForm()">X</a>
@@ -37,7 +41,7 @@ session_start();
             <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" style="margin-bottom:0px" required>
+            <input type="password" placeholder="Enter Password" name="psw" required>
             <span id="errordisplay"></span><br>
 
             <p>Not a member?&emsp;</p><a onclick="openRegis()" id="signup">Sign Up</a>
@@ -64,26 +68,81 @@ session_start();
             <input type="password" placeholder="Re-Enter Password" name="psw" id="confirm-password" required> -->
 
             <p>Already have an account?&emsp;</p><a onclick="openForm()" id="signup">Login</a>
-            <button type="submit" class="btn">Sing up</button>
+            <button type="submit" class="btn">Sign up</button>
         </form>
     </div>
 
-    <!-- -------------------Menu--------------------------- -->
+    <!-- --------------------Menu-------------------------- -->
     <div id="mySidenav" class="sidenav" onmousemove="openNav()" onmouseout="closeNav()">
         <a href="petto_store.php"><img src="img/store.png"></a>
         <a onclick="opencart();"><img src="img/cart.png"></a>
         <a href="petto_like.php"><i class="fa fa-heart-o"></i></a>  <!-- ❤ -->
         <a href="petto_instruction.php"><img src="img/learn.png"></a>
         <a href="petto_contact.php"><img src="img/contact-us.png"></a>
-      </div>
+    </div>
     <!-- -------------------Cart--------------------------- -->
+
     <div id="mySidecart" class="sidecart">
         <a href="javascript:void(0)" class="closebtn" onclick="closecart()">X</a>
         <h1>ตะกร้าสินค้า</h1>
         <div id="cart">
+            <!-- <div class="cart-container">
+                <div id="imagecart"><img src="store/18.jpg"></div>
+                <div id="datacart"><p>ของเล่นไงคะ</p><br>
+                    <div class="addnumber"><span>-</span><p>1</p><span>+</span></div>
+                    <i class="fa fa-trash-o"></i>
+                99฿
+                </div>
+            </div> -->
         </div>
         <div id="checkout">
+            <!-- <div class="space-between"><div>รวมการสั่งซื้อ</div><div>60 ฿</div></div>
+            <div class="space-between"><div>ค่าจัดส่ง</div><div>ฟรี</div></div>
+            <div class="space-between"><div>ยอดชำระเงินทั้งหมด</div><div>60 ฿</div></div>
+            <button type="button" class="btn" onclick="checkOut()">สั่งซื้อสินค้า</button> -->
         </div>
+    </div>
+
+    <!-- ------------------Add Pet(admin)---------------------------- -->
+
+    <div class="form-popup" id="myPet">
+        <form action="js/addPet.php" class="store-container" method="post" enctype="multipart/form-data">
+            <a onclick="closePet()">X</a>
+            
+            <h3>Add Pet(admin)</h3>
+
+            <label for="type"><b>Type</b></label>
+            <select id="type" name="type">
+                <option value="สุนัข">สุนัข</option>
+                <option value="แมว">แมว</option>
+                <option value="กระต่าย">กระต่าย</option>
+                <option value="หนู">หนู</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+            </select>
+
+            <label for="id"><b>ID</b></label>
+            <input type="text" placeholder="Enter ID" name="id" maxlength="4" required>
+
+            <label for="sex"><b>Sex</b></label>
+            <select id="type" name="sex">
+                <option value="เพศผู้">เพศผู้</option>
+                <option value="เพศเมีย">เพศเมีย</option>
+            </select>
+
+            <label for="color"><b>Color</b></label>
+            <input type="text" placeholder="Enter Color" name="color" required>
+
+            <label for="gene"><b>Gene : </b></label>
+            <input type="text" placeholder="Enter Gene" name="gene" required>
+            
+            <label for="age"><b>Ages</b></label>
+            <input type="text" placeholder="Enter Ages" name="age" required>
+
+            <label for="image"><b>Image</b></label>
+            <input type="file" name="petToUpload" id="petToUpload" class="UploadFile" required>
+
+            <button type="submit" class="btn">Add Pet</button>
+        </form>
     </div>
 
     <!-- -------------------Check Out--------------------------- -->
@@ -126,100 +185,56 @@ session_start();
         </form>
     </div>
 
-    <!-- ------------------Container---------------------------- -->
+    <!-- -------------------Adopt--------------------------- -->
 
+    <div id="adopt">
+        <span onclick="closeForm()">X</span>
+        ติดต่อขอรับเลี้ยงสัตว์ได้ที่ : 098-765-4321<br>Facebook : Petto&emsp;&emsp;Instagram : Petto
+    </div>
+
+    <!-- ------------------Container---------------------------- -->
     <div class="grid-container">
         <div id="header">
             <p class="menu" onmouseover="openNav()" onmouseout="closeNav()">&#9776</p>
             <!-- <img src="img/Menubar.png" alt="Menu" class="menu"> -->
             <a href="index.php"><img src="img/logo.png" alt="Logo" class="logo"></a>
-            <a onclick="openForm()" class="user"><img src=<?php echo "user/".$imgfile ?> alt="User">&ensp;<?php if($username=="")echo "Login"; else{echo $username;}?></a>
+            <a onclick="openForm()" class="user"><img src=<?php echo "user/".$imgfile ?> alt="User">&ensp;<?php echo $username?></a>
         </div>
         <div id="space1"></div>
         <div id="main">
-            <img src="img_main/1.png" alt="Cat">
+            <div class="profilehead">
+                <a href="index.php">Petto</a> > สัตว์เลี้ยง
+            </div>
         </div>
-        <div id="space2"></div>
         <div id="menu" class="flex_container">
-            <div><img src="img/0001.png" alt="Dog">Dog</div>
+        <div><img src="img/0001.png" alt="Dog">Dog</div>
             <div><img src="img/0002.png" alt="Cat">Cat</div>
             <div><img src="img/0003.png" alt="Rabbit">Rabbit</div>
             <div><img src="img/0004.png" alt="Mouse">Mouse</div>
             <div><img src="img/0005.png" alt="Etc.">Etc.</div>
         </div>
         <div id="info">
-            <div id="Other">
-                <div style="line-height:20px;">สัตว์เลี้ยงมาใหม่</div>
-                <div style="text-align:right;line-height:40px;"><a href="petto_pet.php">ดูเพิ่มเติม >></a></div>
-            </div>
-            <div id="NewPet">
-                <!-- <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
-                </div>
-                <div>
-                    <img src="store/18.jpg">
-                    <span>ของเล่นสัตว์เลี้ยงสีพาสเทล</span><br>
-                    <p>
-                        <span style="color:#ea7d3b;">สี</span>
-                        <span style="color:black;">ดำ</span>
-                    </p>
-                    <p>
-                        <span style="color:#ea7d3b;">สายพันธ์ุ</span>
-                        <span style="color:black;">ไทย</span>
-                    </p>
-                    
+            <div id="listpet">
+                <!-- <div class="grid-pet">
+                    <div id="img_pet"><img src="store/18.jpg"></div>
+                    <div id="info_pet">
+                        <span>รหัสสัตว์เลี้ยง : 101</span>
+                        <p>เพศ : เพศผู้</p>
+                        <p>สี : ขาว</p>
+                        <p>สายพันธุ์ : โกลเด้น</p>
+                        <p>อายุ : 3 เดือน</p>
+                    </div>
+                    <div id="choose_pet">
+                        <img src="img/home-run.png">
+                    </div>
                 </div> -->
-                
             </div>
+            <div class="pagination">
+                <a onclick="nextprev(-1)">❮</a>
+                <a onclick="nextprev(1)">❯</a>
+                <span style="font-size:15px;margin-left:10px;" id="showpage"></span>
+            </div>
+            <button type="submit" onclick="openPet()" id="addpet">Add Pet</button>
         </div>
         <div id="footer">
             <div class="grid_footer">
@@ -232,13 +247,26 @@ session_start();
 
     <img src="img/top.png" alt="Back to Top" id="btnTop" onclick="topFunction()">
     
-    <!-- -----------------JavaScript----------------------------- -->
+    <!-- --------------JavaScript-------------------------------- -->
 
     <script>
         var log = "<?php echo $username?>";
+        var page = "<?php echo $page?>"
+    
+        window.onload = pageLoad;
+        function pageLoad(){
+            showPet(1);
+            document.getElementById("showpage").innerHTML = page + " / <?php echo $_SESSION['PagePet']-1;?>";
+            if(log == "admin"){
+                document.getElementById("addpet").style.display = "block";
+            }
+            else{
+                document.getElementById("addpet").style.display = "none";
+            }
+        }
+
         function openForm(){   //เปิดหน้า Login
-            if(log == ""){
-                
+            if(log == "Login"){
                 document.getElementById("myFormLogin").style.display = "block";
                 document.getElementById("myFormRegis").style.display = "none";
                 document.getElementById("overlay").style.display = "block";
@@ -248,36 +276,26 @@ session_start();
                 location.href = 'petto_profile.php';
             }
         }
-        // function closeForm(){ //ปิดหน้าทั้งหมด
-        //     document.getElementById("myFormLogin").style.display = "none";
-        //     document.getElementById("myFormRegis").style.display = "none";
-        //     document.getElementById("overlay").style.display = "none";
-        //     document.body.style.overflow = "auto"
-        // }
-        // function openRegis(){ //เปิดหน้า Regis
-        //     document.getElementById("myFormRegis").style.display = "block";
-        //     document.getElementById("myFormLogin").style.display = "none";
-        //     document.getElementById("overlay").style.display = "block";
-        //     document.body.style.overflow = "hidden"
-        // }
 
-        // function openNav() { //เปิดเมนู
-        //     document.getElementById("mySidenav").style.height = "210px";
-        //     document.getElementById("mySidenav").style.paddingTop = "35px"
-        // }
-        // function closeNav() { //ปิดเมนู
-        //     document.getElementById("mySidenav").style.height = "0";
-        //     document.getElementById("mySidenav").style.paddingTop = "0px"
-        // }
+        function nextprev(c){
+            if(c==1){
+                var page = "<?php echo $page++;?>";
+                showPet(++page);
+                document.getElementById("showpage").innerHTML = page + " / <?php echo $_SESSION['PagePet']-1;?>";
+            }
+            if(c==-1){
+                var page = "<?php echo $page--?>";
+                showPet(--page);
+                document.getElementById("showpage").innerHTML = page + " / <?php echo $_SESSION['PagePet']-1;?>";
+            }
+        }
 
-        // function opencart(){
-        //     document.getElementById("mySidecart").style.width = "300px";
-        //     document.getElementById("overlay").style.display = "block";
-            
-        // }
-        // function closecart(){
-        //     document.getElementById("mySidecart").style.width = "0";
-        //     document.getElementById("overlay").style.display = "none";
+        function adopt(){
+            document.getElementById("adopt").style.display = "block";
+        }
+
+        // function myfunction(){
+        //     alert("EIEI");
         // }
     </script>
 </body>
