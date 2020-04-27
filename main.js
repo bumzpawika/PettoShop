@@ -293,11 +293,11 @@ function ClickLike(n){
 		}
 		else if(xml.responseText == "Inserted"){
 			UserLike(n);
-			// alert("EIEI");
+			ShowLike();
 		}
 		else if(xml.responseText == "Deleted"){
 			UserLike(n);
-			// alert("eiei");
+			ShowLike();
 		}
 	}
 	xml.onerror=function(){
@@ -308,7 +308,6 @@ function ClickLike(n){
 
 function UserLike(id){
 	var x = new XMLHttpRequest();
-
 	x.open("POST","js/CheckLike.php?ProID="+id,true);
 	x.onload = function(){
 		document.getElementById("like"+id).innerHTML = x.responseText;
@@ -425,5 +424,27 @@ function showPet(x){
 	};
 	
 	http.send();
+}
+
+function ShowLike(){
+	var xml = new XMLHttpRequest();
+	xml.open("POST","js/readLike.php",true);
+	xml.onload = function(){
+		if(this.responseText == "Login"){
+			document.getElementById("nolike").style.display = "block";
+			document.getElementById("UserLike").style.display = "none";
+			document.getElementById("nolike").innerHTML = "ไม่มีข้อมูล กรุณาลงชื่อเข้าใช้";
+		}
+		else{
+			document.getElementById("UserLike").style.display = "block";
+			document.getElementById("nolike").style.display = "none";
+			document.getElementById("UserLike").innerHTML = this.responseText;
+			// alert(this.responseText);
+		}
+	}
+	xml.onerror=function(){
+		alert("No");
+	}
+	xml.send();
 }
 // --------------------------------------------------------------------------------

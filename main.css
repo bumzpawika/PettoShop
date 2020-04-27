@@ -64,7 +64,6 @@ body{
 
 #info{
     grid-column: 1/span 1;
-    /* height: 700px; */
 }
 
 #footer{
@@ -664,7 +663,7 @@ p{
     margin-left: 30px;
 }
 
-#list div{
+#list div,#UserLike div{
     float: left;
     display: block;
     text-align: center;
@@ -676,14 +675,14 @@ p{
     padding-bottom: 15px;
 }
 
-#list div img{
+#list div img,#UserLike img{
     width: 100%;
     margin-bottom: 15px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
 
-#list span{
+#list span, #UserLike span{
     background-color: #ffd7b5;
     border-radius: 10px;
     margin-top: 10px;
@@ -691,7 +690,7 @@ p{
     color: #ea7d3b;
 }
 
-#list .fa{
+#list .fa, #UserLike .fa{
     border: none;
     font-size: 25px;
     cursor: pointer;
@@ -703,7 +702,7 @@ p{
     display: inline-block;
 }
 
-#list p {
+#list p ,#UserLike p{
     font-size: 15px;
 }
 
@@ -948,6 +947,20 @@ div#adopt{
     right: 15px;
     cursor: pointer;
 }
+
+#UserLike{
+    float: left;
+    width: 80%;
+    margin: 0 10%;
+    justify-content: center;
+}
+
+#nolike{
+    display: block;
+    margin-top: 70px;
+    text-align: center;
+}
+
 /* -------------------------------------------------------------------------- */
 .container {
     display: block;
@@ -1047,15 +1060,18 @@ div#adopt{
     #filter{
         display: none;
     }
-    #list{
+    #list,#UserLike{
         margin: 20px;
     }
-    #list div{
+    #list div,#UserLike div{
         width: 30%;
         margin: 12px;
     }
-    #list span,#list p,.btn{
+    #list span,#list p,.btn,#UserLike span,#UserLike p{
         font-size: 13px;
+    }
+    #UserLike{
+        width: 96%;
     }
     #content{
         font-size: 15px;
@@ -1119,17 +1135,17 @@ div#adopt{
     #choose_pet img{
         width: 60%;
     }
-    #list{
+    #list,#UserLike{
         margin: 10px;
     }
-    #list div{
+    #list div,#UserLike div{
         width: 46%;
         margin: 5px;
     }
-    #list span,#list p,.btn{
+    #list span,#list p,.btn,#UserLike span,#UserLike p{
         font-size: 10px;
     }
-    #list .fa{
+    #list .fa,#UserLike .fa{
         font-size: 18px;
     }
     #footer > img{
